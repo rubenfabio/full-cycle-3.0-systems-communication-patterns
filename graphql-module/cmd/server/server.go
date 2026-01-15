@@ -27,6 +27,16 @@ func main() {
 
 	defer db.Close()
 
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS categories (id string, name string, description string)")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS courses (id string, name string, description string, category_id string)")
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	categoryDB := database.NewCategory(db)
 	courseDB := database.NewCourse(db)
 
