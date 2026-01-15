@@ -129,6 +129,12 @@ autobind:
 # modelgen, the others will be allowed when binding to fields. Configure them to
 # your liking
 models:
+  Category:
+    model:
+      - github.com/rubenfabio/gqlgen-todos/graph/model.Category
+  Course:
+    model:
+      - github.com/rubenfabio/gqlgen-todos/graph/model.Course
   ID:
     model:
       - github.com/99designs/gqlgen/graphql.ID
