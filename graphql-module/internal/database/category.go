@@ -2,6 +2,7 @@ package database
 
 import (
 	"database/sql"
+
 	"github.com/google/uuid"
 )
 
@@ -27,4 +28,22 @@ func (c *Category) CreateCategory(name string, description string) (Category, er
 		Name: name,
 		Description: description,
 	}, nil
+}
+
+func (c *Category) FindAllCategories() ([]Category, error) {
+	rows, err := c.db.Query("SELECT id, name, description FROM categories")
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var categories []Category
+	for rows.Next() {
+		var category Category
+		if err := rows.Scan(&category.ID, &category.Name, &category.Description); err != nil {
+			return nil, err
+		}
+		categories = append(categories, category)
+	}
+	return categories, nil
 }

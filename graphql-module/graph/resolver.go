@@ -5,6 +5,8 @@ package graph
 // It serves as dependency injection for your app, add any dependencies you require
 // here.
 
+import "github.com/rubenfabio/gqlgen-todos/internal/database"
+
 type Resolver struct{
 	CategoryDB *database.Category
 }
