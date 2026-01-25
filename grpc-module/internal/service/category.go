@@ -19,17 +19,15 @@ func NewCategoryService(categoryDB database.Category) *CategoryService {
 		CategoryDB: categoryDB,
 	}
 }
-func (c *CategoryService) CreateCategory(ctx context.Context, in *pb.CreateCategoryRequest) (*pb.CategoryResponse, error) {
+func (c *CategoryService) CreateCategory(ctx context.Context, in *pb.CreateCategoryRequest) (*pb.Category, error) {
 	category, err := c.CategoryDB.CreateCategory(in.Name, in.Description)
 	if err != nil {
 		return nil, status.Error(codes.Internal, "failed to create category")
 	}
-	categoryResponse := &pb.CategoryResponse{
-		Category: &pb.Category{
-			Id: category.ID,
-			Name: category.Name,
-			Description: category.Description,
-		},
+	categoryResponse := &pb.Category{
+		Id: category.ID,
+		Name: category.Name,
+		Description: category.Description,
 	}
 	return categoryResponse, nil
 }

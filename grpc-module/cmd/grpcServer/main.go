@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 
+	_ "github.com/glebarez/go-sqlite"
 	"github.com/rubenfabio/full-cycle-3.0-systems-communication-patterns/grpc-module/internal/database"
 	"github.com/rubenfabio/full-cycle-3.0-systems-communication-patterns/grpc-module/internal/pb"
 	"github.com/rubenfabio/full-cycle-3.0-systems-communication-patterns/grpc-module/internal/service"
@@ -19,6 +20,17 @@ func main() {
 	}
 
 	defer db.Close()
+
+	
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS categories (id string, name string, description string)")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	_, err = db.Exec("CREATE TABLE IF NOT EXISTS courses (id string, name string, description string, category_id string)")
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	categoryDB := database.NewCategory(db)
 	categoryService := service.NewCategoryService(*categoryDB)
