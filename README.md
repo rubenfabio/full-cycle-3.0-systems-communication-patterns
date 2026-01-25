@@ -6,10 +6,6 @@ Neste módulo, exploramos as principais formas de comunicação entre serviços 
 
 ## 📚 Tópicos Abordados
 
-Vamos explorar na prática as seguintes tecnologias e conceitos:
-
-## 📚 Tópicos Abordados
-
 Vamos explorar na prática as seguintes tecnologias, ferramentas e conceitos:
 
 ### 1. REST (Representational State Transfer)
