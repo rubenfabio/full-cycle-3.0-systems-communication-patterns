@@ -34,6 +34,16 @@ services:
       - consul
     volumes:
       - ./clients/consul01:/etc/consul.d
+  
+  consulclient02:
+    image: hashicorp/consul:latest
+    container_name: consulclient02
+    hostname: consulclient02
+    command: tail -f /dev/null
+    networks:
+      - consul
+    volumes:
+      - ./clients/consul02:/etc/consul.d
 
 networks:
   consul:
