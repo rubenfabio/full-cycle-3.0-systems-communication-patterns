@@ -1,20 +1,40 @@
 version: '3.8'
 
 services:
-  consul:
+  consulserver01:
     image: hashicorp/consul:latest
-    container_name: consul
-    ports:
-      - "8500:8500"
-    command: agent -dev -client=0.0.0.0
-    volumes:
-      - consul_data:/consul/data
+    container_name: consulserver01
+    hostname: consulserver01
+    command: tail -f /dev/null
     networks:
       - consul
+
+  consulserver02:
+    image: hashicorp/consul:latest
+    container_name: consulserver02
+    hostname: consulserver02
+    command: tail -f /dev/null
+    networks:
+      - consul
+
+  consulserver03:
+    image: hashicorp/consul:latest
+    container_name: consulserver03
+    hostname: consulserver03
+    command: tail -f /dev/null
+    networks:
+      - consul
+  
+  consulclient01:
+    image: hashicorp/consul:latest
+    container_name: consulclient01
+    hostname: consulclient01
+    command: tail -f /dev/null
+    networks:
+      - consul
+    volumes:
+      - ./clients/consul01:/etc/consul.d
 
 networks:
   consul:
     driver: bridge
-
-volumes:
-  consul_data:
