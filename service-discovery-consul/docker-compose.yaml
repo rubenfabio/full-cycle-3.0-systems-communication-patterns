@@ -6,6 +6,10 @@ services:
     container_name: consulserver01
     hostname: consulserver01
     command: tail -f /dev/null
+    ports:
+      - 8500:8500
+    volumes:
+      - ./servers/server01:/etc/consul.d
     networks:
       - consul
 
@@ -14,6 +18,8 @@ services:
     container_name: consulserver02
     hostname: consulserver02
     command: tail -f /dev/null
+    volumes:
+      - ./servers/server02:/etc/consul.d
     networks:
       - consul
 
@@ -22,6 +28,8 @@ services:
     container_name: consulserver03
     hostname: consulserver03
     command: tail -f /dev/null
+    volumes:
+      - ./servers/server03:/etc/consul.d
     networks:
       - consul
   
